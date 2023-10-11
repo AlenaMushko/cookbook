@@ -1,0 +1,22 @@
+{
+  "name": "cookbook",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node backend/src/server.ts",
+    "client": "npm start --prefix frontend",
+    "dev": "nodemon backend/src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlenaMushko/cookbook.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlenaMushko/cookbook/issues"
+  },
+  "homepage": "https://github.com/AlenaMushko/cookbook#readme",
+  "description": ""
+}
