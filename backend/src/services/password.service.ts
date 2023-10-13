@@ -10,6 +10,17 @@ class PasswordService {
       throw new ApiError(e.message, e.status);
     }
   }
+
+  public async compare(
+    enterPassword: string,
+    userPassword: string,
+  ): Promise<boolean> {
+    try {
+      return await bcrypt.compare(enterPassword, userPassword);
+    } catch (e) {
+      throw new ApiError(e.message, e.status);
+    }
+  }
 }
 
 export const passwordService = new PasswordService();

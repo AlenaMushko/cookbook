@@ -2,7 +2,7 @@ import { FilterQuery } from "mongoose";
 
 import { ApiError } from "../errors/api.error";
 import { Activated, User } from "../models";
-import { IUser } from "../types";
+import { IActivated, ITokenPayload, IUser } from "../types";
 
 class AuthRepository {
   public async getUserByParams(
@@ -30,6 +30,35 @@ class AuthRepository {
       userEmail: body.email,
       tokenType,
     });
+  }
+
+  public async findActivated(accessToken: string): Promise<IActivated> {
+    try {
+      return (await Activated.findOne({
+        accessToken,
+      })) as unknown as IActivated;
+    } catch (e) {
+      throw new ApiError(e.message, e.status);
+    }
+  }
+
+  public async deleteActivated(_id: ITokenPayload): Promise<void> {
+    try {
+      await Activated.deleteOne({ _id });
+    } catch (e) {
+      throw new ApiError(e.message, e.status);
+    }
+  }
+
+  public async findUserByIdAndUpdate(
+    user: IUser,
+    params: FilterQuery<IUser>,
+  ): Promise<void> {
+    try {
+      await User.findByIdAndUpdate(user._id, params);
+    } catch (e) {
+      throw new ApiError(e.message, e.status);
+    }
   }
 }
 

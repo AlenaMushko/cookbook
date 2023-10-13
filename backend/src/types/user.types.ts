@@ -10,4 +10,5 @@ export interface IUser extends Document {
   gender?: EGenders;
   verify: boolean;
   actionToken: string;
+  lastVisited: Date;
 }

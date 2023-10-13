@@ -37,6 +37,11 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    lastVisited: {
+      type: Date,
+      default: Date.now,
+      required: true,
+    },
   },
   {
     timestamps: true,
